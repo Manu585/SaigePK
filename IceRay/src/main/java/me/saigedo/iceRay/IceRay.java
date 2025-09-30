@@ -23,9 +23,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.util.Vector;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.Objects;
-import java.util.Set;
 
 public final class IceRay extends WaterAbility implements AddonAbility, ComboAbility {
     private static final double STEP = 0.5;
@@ -68,7 +66,7 @@ public final class IceRay extends WaterAbility implements AddonAbility, ComboAbi
 
         this.abilityState = AbilityState.PREPARED;
 
-        Block sourceBlock = BlockSource.getWaterSourceBlock(this.player, sourceRange, ClickType.SHIFT_DOWN, true, true, this.bPlayer.canPlantbend());
+        final Block sourceBlock = BlockSource.getWaterSourceBlock(this.player, sourceRange, ClickType.SHIFT_DOWN, true, true, this.bPlayer.canPlantbend());
         if (sourceBlock == null) {
             return;
         }
@@ -100,8 +98,8 @@ public final class IceRay extends WaterAbility implements AddonAbility, ComboAbi
             }
 
             case STARTED -> {
-                Vector look = this.player.getEyeLocation().getDirection();
-                Vector dir = new Vector(look.getX(), 0, look.getZ()).normalize();
+                final Vector look = this.player.getEyeLocation().getDirection();
+                final Vector dir = new Vector(look.getX(), 0, look.getZ()).normalize();
 
                 final boolean advance = this.advanceRay(dir, this.radius, this.range, this.speed);
 
